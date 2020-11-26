@@ -499,7 +499,6 @@ func (builder *StatefulSetBuilder) podTemplateSpec(previousPodAnnotations map[st
 					SecurityContext: &corev1.SecurityContext{
 						RunAsUser: pointer.Int64Ptr(0),
 						Capabilities: &corev1.Capabilities{
-							Drop: []corev1.Capability{"ALL"},
 							Add:  []corev1.Capability{"CHOWN", "FOWNER"},
 						},
 					},
