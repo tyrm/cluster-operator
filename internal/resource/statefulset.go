@@ -358,6 +358,10 @@ func (builder *StatefulSetBuilder) podTemplateSpec(previousPodAnnotations map[st
 
 	rabbitmqContainerVolumeMounts := []corev1.VolumeMount{
 		{
+			Name:      "rabbitmq-erlang-cookie",
+			MountPath: "/var/lib/rabbitmq/",
+		},
+		{
 			Name:      "persistence",
 			MountPath: "/var/lib/rabbitmq/mnesia/",
 		},
@@ -374,10 +378,6 @@ func (builder *StatefulSetBuilder) podTemplateSpec(previousPodAnnotations map[st
 			Name:      "rabbitmq-confd",
 			MountPath: "/etc/rabbitmq/conf.d/default_user.conf",
 			SubPath:   "default_user.conf",
-		},
-		{
-			Name:      "rabbitmq-erlang-cookie",
-			MountPath: "/var/lib/rabbitmq/",
 		},
 		{
 			Name:      "pod-info",
